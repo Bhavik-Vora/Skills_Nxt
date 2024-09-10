@@ -1,6 +1,5 @@
 import { Box, Grid, Heading, Text, VStack } from '@chakra-ui/react';
 import React, { useState } from 'react';
-import introVideo from '../../Assets/videos/1.mkv';
 import thumbnail from '../../Assets/images/Video_thumbnail.jpeg';
 
 const CoursePage = () => {
@@ -35,16 +34,14 @@ const CoursePage = () => {
     <>
       <Grid minH={'100vh'} templateColumns={['1fr', '3fr 1fr']} py={["20","20"]}>
         <Box>
-          <video
-            width={'100%'}
-            // autoPlay
-            controls
-            controlsList="nodownload  noremoteplayback"
-            disablePictureInPicture
-            disableRemotePlayback
-            poster={thumbnail}
-            src={introVideo}
-          />
+        <video
+  controls
+  controlsList="nodownload nofullscreen noremoteplayback"
+  disablePictureInPicture
+  disableRemotePlayback
+  poster={thumbnail}
+  src="https://res.cloudinary.com/dosn50zdf/video/upload/v1725946731/1_avybrd.mkv"
+/>
 
           <Heading
             m={'4'}

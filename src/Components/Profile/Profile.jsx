@@ -72,14 +72,14 @@ const Profile = ({ user }) => {
   useEffect(() => {
     if (error) {
       toast.error(error, {
-        duration: 10000 // Duration in milliseconds
+        duration: 5000 // Duration in milliseconds
       });
       dispatch({ type: 'clearError' });
     }
 
     if (message) {
       toast.success(message, {
-        duration: 10000, // Duration in milliseconds
+        duration: 5000, // Duration in milliseconds
       });
       dispatch({ type: 'clearMessage' });
     }

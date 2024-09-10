@@ -12,7 +12,6 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import './home.css';
 import top from '../../Assets/images/Home_Top_Banner.png';
-import introVideo from '../../Assets/videos/1.mkv';
 import thumbnail from "../../Assets/images/Video_thumbnail.jpeg"
 const Home = () => {
   return (
@@ -116,15 +115,15 @@ const Home = () => {
         </HStack>
       </Box>
       <div className="container2">
-        <video
-          // autoPlay
-          controls
-          controlsList="nodownload nofullscreen noremoteplayback"
-          disablePictureInPicture
-          disableRemotePlayback
-          poster={thumbnail}
-          src={introVideo}
-        />
+     <video
+  controls
+  controlsList="nodownload nofullscreen noremoteplayback"
+  disablePictureInPicture
+  disableRemotePlayback
+  poster={thumbnail}
+  src="https://res.cloudinary.com/dosn50zdf/video/upload/v1725946731/1_avybrd.mkv"
+/>
+
       </div>
     </section>
   );

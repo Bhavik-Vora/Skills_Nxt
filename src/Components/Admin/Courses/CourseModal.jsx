@@ -131,7 +131,6 @@ const CourseModal = ({
                     disablePictureInPicture
                     disableRemotePlayback
                     acc
-
                     />
                 )
             }

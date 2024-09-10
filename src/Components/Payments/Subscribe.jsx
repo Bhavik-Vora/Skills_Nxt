@@ -14,12 +14,12 @@ import toast from 'react-hot-toast';
 const Subscribe = () => {
   const dispatch = useDispatch();
 
-  const {loading,error,message}= useSelector(state=>state.subscription)
+  const {loading,error,message,subscriptionId}= useSelector(state=>state.subscription)
   const submitHandler = useCallback(async () => {
     try {
       await dispatch(buySubscription());
     } catch (err) {
-      // Optionally handle any additional errors here
+      console.log(err);
     }
   }, [dispatch]);
 
