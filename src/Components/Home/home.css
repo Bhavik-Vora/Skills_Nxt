@@ -1,0 +1,40 @@
+.container {
+    height: 100vh;
+    padding: 0 5rem 0 5rem ;
+    box-sizing: border-box;
+    margin: 0;
+   
+}
+.container2{
+    
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container2 video{
+    width: 90%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.175);
+    border-radius: 5px;
+    margin-top: 1rem;
+    outline: none;
+}
+
+@media screen and (max-width: 600px) {
+
+    .container2 video {
+        margin-top: 1rem;
+      width: 100%;
+    }
+  }
+
+  .course{
+    width: 250px;
+    margin-bottom: 1rem;
+    transition: all 0.5s;
+  }
+  .course:hover{
+    transform: translateY(-10px);
+  }
