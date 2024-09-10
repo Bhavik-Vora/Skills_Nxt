@@ -1,0 +1,2 @@
+.container{box-sizing:border-box;height:100vh;margin:0;padding:0 5rem}.container2{align-items:center;display:flex;height:100%;justify-content:center;width:100%}.container2 video{border-radius:5px;box-shadow:0 0 10px rgba(0,0,0,.175);margin-top:1rem;outline:none;width:90%}@media screen and (max-width:600px){.container2 video{margin-top:1rem;width:100%}}.course{margin-bottom:1rem;transition:all .5s;width:250px}.course:hover{transform:translateY(-10px)}
+/*# sourceMappingURL=main.c89cc445.css.map*/
