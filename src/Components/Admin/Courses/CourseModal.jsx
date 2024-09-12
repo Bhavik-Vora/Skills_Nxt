@@ -18,14 +18,16 @@ import {
 import React, { useState } from 'react';
 import { RiDeleteBin7Fill } from 'react-icons/ri';
 import { useColorModeValue } from '@chakra-ui/react';
+import { useSelector } from 'react-redux';
 
 const CourseModal = ({
   isOpen,
   onClose,
   id,
-  deleteLectureButtonHandler,
+  deleteButtonHandler,
   addLectureHandler,
   courseTitle,
+  loading,
   lectures = [],
 }) => {
   const [title, setTitle] = useState('');
@@ -51,6 +53,7 @@ const CourseModal = ({
     setVideoPrev("");
     onClose();
   }
+
   return (
     <>
       <Modal isOpen={isOpen} size={'full'} onClose={ModalCloseHandler} scrollBehavior='outside'>
@@ -67,14 +70,18 @@ const CourseModal = ({
                   <Heading children={`${id}`} size={'sm'} opacity={0.4} />
                 </Box>
                 <Heading children={'Lectures'} size={'lg'} />
+                {lectures.map((item, i) => (
                 <VideoCard
-                  title="Introduction To JS"
-                  description="Starting with Basic of JavaScript"
-                  num={1}
-                  lectureId={123}
+                  key={i}
+                  title={item.title}
+                  description={item.description}
+                  num={i + 1}
+                  lectureId={item._id}
                   courseId={id}
-                  deleteLectureButtonHandler={deleteLectureButtonHandler}
+                  deleteButtonHandler={deleteButtonHandler}
+                  loading={loading}
                 />
+              ))}
               </Box>
               <Box>
                 <form
@@ -134,7 +141,7 @@ const CourseModal = ({
                     />
                 )
             }
-            <Button w={'full'} colorScheme='purple' type='submit'>Upload </Button>
+            <Button w={'full'} colorScheme='purple' type='submit' isLoading={loading}>Upload </Button>
                   </VStack>
                 </form>
               </Box>
@@ -157,11 +164,10 @@ function VideoCard({
   num,
   lectureId,
   courseId,
-  deleteLectureButtonHandler,
+  deleteButtonHandler,
+  loading
 }) {
-  const deleteHandler = () => {
-    console.log(deleteHandler);
-  };
+  
   return (
     <Stack
       direction={['column', 'row']}
@@ -177,7 +183,8 @@ function VideoCard({
       </Box>
       <Button
         color={'purple'}
-        onClick={() => deleteHandler(courseId, lectureId)}
+        onClick={() => deleteButtonHandler(courseId, lectureId)}
+        isLoading={loading}
       >
         {' '}
         <RiDeleteBin7Fill />

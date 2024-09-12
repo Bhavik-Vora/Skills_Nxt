@@ -19,6 +19,7 @@ import { Link } from 'react-router-dom';
 import { ColorModeSwitcher } from '../../../ColorModeSwitcher';
 import {useDispatch} from "react-redux"
 import { logout } from '../../../Redux/action/user';
+
 const Header = ({ isAuthenticated = false, user }) => {
   const { isOpen, onClose, onOpen } = useDisclosure();
   const LinkButton = ({ url = '/', title = 'Home', onClick = { onClose } }) => (
@@ -69,44 +70,42 @@ const Header = ({ isAuthenticated = false, user }) => {
               bottom={'2rem'}
               width="80%"
             >
-              {isAuthenticated ? (
-                <>
-                  <VStack>
-                    <HStack>
-                      <Link onClick={onClose} to="/profile">
-                        <Button variant={'ghost'} colorScheme={'yellow'}>
-                          Profile
-                        </Button>
-                      </Link>
+             {isAuthenticated ? (
+  <>
+    <VStack spacing={'4'}>
+      <HStack spacing={'4'}>
+        <Link onClick={onClose} to="/profile">
+          <Button variant={'ghost'} colorScheme={'yellow'}>
+            Profile
+          </Button>
+        </Link>
+        <Button variant={'ghost'} onClick={logoutHandler}>
+          <RiLogoutBoxLine />
+          Logout
+        </Button>
+      </HStack>
+      {user && user.role === 'admin' && (
+        <Link onClick={onClose} to="/admin/dashboard">
+          <Button colorScheme={'purple'} variant={'ghost'}>
+            <RiDashboardFill style={{ marginLeft: '4px' }} />
+            Dashboard
+          </Button>
+        </Link>
+      )}
+    </VStack>
+  </>
+) : (
+  <>
+    <Link onClick={onClose} to="/login">
+      <Button colorScheme={'yellow'}>Login</Button>
+    </Link>
+    <p>OR</p>
+    <Link onClick={onClose} to="/register">
+      <Button colorScheme={'yellow'}>Register</Button>
+    </Link>
+  </>
+)}
 
-                      <Button variant={'ghost'} onClick={logoutHandler}>
-                        <RiLogoutBoxLine />
-                        Logout
-                      </Button>
-                    </HStack>
-                    {user && user.role === 'admin' && (
-                      <Link onClick={onClose} to="/admin/dashboard">
-                        <Button colorScheme={'purple'} variant={'ghost'}>
-                          <RiDashboardFill style={{ marginLeft: '4px' }} />
-                          Dashboard
-                        </Button>
-                      </Link>
-                    )}
-                  </VStack>
-                </>
-              ) : (
-                <>
-                  <Link onClick={onClose} to="/login">
-                    <Button colorScheme={'yellow'}>Login</Button>
-                  </Link>
-
-                  <p>OR</p>
-
-                  <Link onClick={onClose} to="/register">
-                    <Button colorScheme={'yellow'}>Register</Button>
-                  </Link>
-                </>
-              )}
             </HStack>
           </DrawerBody>
         </DrawerContent>

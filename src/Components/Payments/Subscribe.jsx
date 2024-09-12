@@ -14,7 +14,10 @@ import toast from 'react-hot-toast';
 const Subscribe = () => {
   const dispatch = useDispatch();
 
-  const {loading,error,message,subscriptionId}= useSelector(state=>state.subscription)
+  const { loading, error, message, subscriptionId } = useSelector(
+    state => state.subscription
+  );
+  const { error: courseError } = useSelector(state => state.course);
   const submitHandler = useCallback(async () => {
     try {
       await dispatch(buySubscription());
@@ -28,11 +31,15 @@ const Subscribe = () => {
       toast.error(error);
       dispatch({ type: 'clearError' }); // Clear error after showing toast
     }
+    if (courseError) {
+      toast.error(courseError);
+      dispatch({ type: 'clearError' });
+    }
     if (message) {
       toast.success(message);
       dispatch({ type: 'clearMessage' }); // Clear message after showing toast
     }
-  }, [error, message, dispatch])
+  }, [error, message, dispatch,courseError]);
   return (
     <>
       <Container h={'90vh'} p={'16'}>
@@ -49,13 +56,19 @@ const Subscribe = () => {
 
           <Box p="4">
             <VStack textAlign={'center'} px={'8'} mt={'4'} spacing={'8'}>
-              <Text
-                children={'Full Stack Web Development Course'}
-              />
+              <Text children={'Full Stack Web Development Course'} />
               <Heading size={'md'} children={'₹7999 Only'} />
             </VStack>
-            <Button m={0} mt={'8'} w={'full'} colorScheme="red" onClick={submitHandler}isLoading={loading} disabled={loading}>
-            Buy Now
+            <Button
+              m={0}
+              mt={'8'}
+              w={'full'}
+              colorScheme="red"
+              onClick={submitHandler}
+              isLoading={loading}
+              disabled={loading}
+            >
+              Buy Now
             </Button>
           </Box>
 
@@ -70,7 +83,11 @@ const Subscribe = () => {
               color={'white'}
               textTransform={'uppercase'}
             />
-            <Text fontSize={'xs'} color={'white'} children={'*Terms &  Condition Apply*'}/>
+            <Text
+              fontSize={'xs'}
+              color={'white'}
+              children={'*Terms &  Condition Apply*'}
+            />
           </Box>
         </VStack>
       </Container>

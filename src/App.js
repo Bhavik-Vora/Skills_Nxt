@@ -28,7 +28,8 @@ import toast, { Toaster } from 'react-hot-toast';
 import { loadUser } from './Redux/action/user.js';
 import { ProtectedRoute } from 'protected-route-react';
 import Loader from './Components/layout/Loader/Loader.jsx';
-function App() {
+
+function App( ) {
   window.addEventListener('contextmenu', e => {
     e.preventDefault();
   });
@@ -38,11 +39,11 @@ function App() {
   );
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if(isAuthenticated){
+
       dispatch(loadUser());
     }
-  }, [dispatch, isAuthenticated]);
-  // Load user only if authenticated
+  }, [dispatch]);
 
   // Handle errors and messages
   useEffect(() => {
@@ -66,8 +67,10 @@ function App() {
           <Header isAuthenticated={isAuthenticated} user={user} />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/courses" element={<Courses />} />
-            <Route path="/courses/:id" element={<CoursePage />} />
+            <Route path="/courses" element={<Courses />}/>
+            <Route path="/courses/:id" element={<ProtectedRoute isAuthenticated={isAuthenticated} >
+              <CoursePage  user={user} />
+            </ProtectedRoute>} />
             <Route
               path="/login"
               element={
@@ -75,7 +78,7 @@ function App() {
                   isAuthenticated={!isAuthenticated}
                   redirect="/profile"
                 >
-                  <Login />
+                  <Login user={user} />
                 </ProtectedRoute>
               }
             />
@@ -209,7 +212,7 @@ function App() {
           <Toaster
             position="bottom-center"
             toastOptions={{
-              duration: 10000,
+              duration: 3000,
             }}
           />
           <Footer />

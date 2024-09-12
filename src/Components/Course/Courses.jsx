@@ -30,7 +30,7 @@ const Course = ({
 }) => {
   return (
     <VStack className="course" alignItems={['center', 'flex-start']}>
-      <Image src={thumbnail} boxSize="60" objectFit={'contain'} />
+      <Image src={imageSrc} boxSize="60" objectFit={'contain'} />
       <Heading
         textAlign={['center', 'left']}
         maxW="200px"

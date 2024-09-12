@@ -1,11 +1,7 @@
-import { createReducer } from "@reduxjs/toolkit";
-const initialState = {
-  isAuthenticated: false,
-  user: null,
-  loading: false,
-  error: null,
-  message: null,
-};
+import { createReducer } from '@reduxjs/toolkit';
+
+const initialState = {};
+
 export const userReducer = createReducer(initialState, (builder) => {
   builder
     .addCase('loginRequest', (state) => {
@@ -70,5 +66,3 @@ export const userReducer = createReducer(initialState, (builder) => {
       state.message = null;
     });
 });
-
-
