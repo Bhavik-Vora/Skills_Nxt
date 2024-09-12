@@ -19,6 +19,6 @@ const store = configureStore({
 });
 
 export default store;
-export const server = 'http://localhost:8080/api/v1/user';
-export const adminserver = 'http://localhost:8080/api/v1/admin';
-export const otherserver = 'http://localhost:8080/api/v1/other';
+export const server = 'https://skilsnxt.vercel.app/api/v1/user';
+export const adminserver = 'https://skilsnxt.vercel.app/api/v1/admin';
+export const otherserver = 'https://skilsnxt.vercel.app/api/v1/other';
