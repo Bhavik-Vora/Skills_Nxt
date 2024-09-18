@@ -11,10 +11,14 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import introVideo from '../../Assets/videos/1.mkv';
-import thumbnail from '../../Assets/images/Video_thumbnail.jpeg';
+
+// import thumbnail from '../../Assets/images/Video_thumbnail.jpeg';
 import { RiSecurePaymentFill } from 'react-icons/ri';
 import TandCo from "../../Assets/docs/termsAndCondition.js"
+
+const handleAutoplay = (e) => {
+  e.target.play();
+};
 
 const Founder = () => {
   return (
@@ -45,15 +49,20 @@ const VideoPlayer = () => {
   return (
     <Box>
       <video
-        autoPlay
+        accept="video/*"
         controls
+        autoPlay
         muted
         loop
         controlsList="nodownload nofullscreen noremoteplayback"
         disablePictureInPicture
         disableRemotePlayback
-        src={introVideo}
+        onLoadedData={handleAutoplay}
+        src="https://res.cloudinary.com/dosn50zdf/video/upload/f_mp4/v1726654707/1920x1080_Alpha_Batch_3.0_nxftvs.mp4"
+        width={"100%"}
+            
       />
+      
     </Box>
   );
 };

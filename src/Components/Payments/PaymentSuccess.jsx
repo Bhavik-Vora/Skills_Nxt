@@ -8,10 +8,12 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { RiChatSettingsFill, RiCheckboxCircleFill } from 'react-icons/ri';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 
 const PaymentSuccess = () => {
+  const { subscriptionId } = useSelector((state) => state.subscription);
   return (
     <>
       <Container h="100vh" p="16">
@@ -47,7 +49,7 @@ const PaymentSuccess = () => {
             to="/profile"
             children={<Button variant={'ghost'}>Go to Dashboard</Button>}
           />
-          <Text>Reference ID : {Math.floor(Math.random() * 100000000)}</Text>
+         <Text>Reference ID: {subscriptionId || 'Not available'}</Text>
         </VStack>
       </Container>
     </>

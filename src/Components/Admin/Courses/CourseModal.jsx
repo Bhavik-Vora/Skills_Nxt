@@ -114,7 +114,7 @@ const CourseModal = ({
                       }}
                     />
                       <Input
-              accept="video/mp4"
+              accept=".mp4, .webm, .ogg, .mov, .avi, .mkv"
               required
               id="chooseAvatar"
               type={'file'}

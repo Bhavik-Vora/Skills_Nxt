@@ -1,8 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-const initialState = {};
-
-export const userReducer = createReducer(initialState, (builder) => {
+export const userReducer = createReducer({}, (builder) => {
   builder
     .addCase('loginRequest', (state) => {
       state.loading = true;
@@ -66,3 +64,7 @@ export const userReducer = createReducer(initialState, (builder) => {
       state.message = null;
     });
 });
+
+
+
+

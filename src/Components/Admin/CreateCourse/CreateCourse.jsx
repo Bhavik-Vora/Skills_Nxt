@@ -30,11 +30,8 @@ const CreateCourse = () => {
 
   const categories = [
     'Web development',
-    'Artificial Intellegence',
     'Data Structure & Algorithm',
-    'App Development',
-    'Data Science',
-    'Game Development',
+    'Youtube Free Playlist',
   ];
 
   const changeImageHandler = e => { 

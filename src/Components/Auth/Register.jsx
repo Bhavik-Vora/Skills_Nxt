@@ -59,17 +59,17 @@ const Register = () => {
   };
   return (
     <>
-      <Container h={'105vh'}>
+      <Container h={'95vh'}>
   
-      <VStack h={'full'} justifyContent="center" spacing={'4'}>
+      <VStack h={'full'} justifyContent="center" spacing={'2'} mt={['0','8']}>
 
           <Heading children="Signup To Skills Nxt" />
 
           <form style={{ width: '100%' }} onSubmit={submitHandler}>
-            <Box my={'4'} display={'flex'} justifyContent="center">
-              <Avatar size={'lg'} src={imagePrev} />
+            <Box my={'3'} display={'flex'} justifyContent="center">
+              <Avatar size={['xl','lg']} src={imagePrev} />
             </Box>
-            <Box my={'4'}>
+            <Box my={'3'}>
               <FormLabel htmlFor="name" children="Name" />
               <Input
                 required
@@ -81,7 +81,7 @@ const Register = () => {
                 focusBorderColor="yellow.500"
               />
             </Box>
-            <Box my={'4'}>
+            <Box my={'3'}>
               <FormLabel htmlFor="email" children="Email Address" />
               <Input
                 required
@@ -93,7 +93,7 @@ const Register = () => {
                 focusBorderColor="yellow.500"
               />
             </Box>
-            <Box my={'4'}>
+            <Box my={'3'}>
               <FormLabel htmlFor="password" children="Password" />
               <Input
                 required
@@ -106,7 +106,7 @@ const Register = () => {
               />
             </Box>
 
-            <Box my={'4'}>
+            <Box my={'3'}>
               <FormLabel htmlFor="chooseAvatar" children="Choose a Avatar" />
               <Input
                 accept="image/*"
@@ -119,7 +119,7 @@ const Register = () => {
               />
             </Box>
 
-            <Button my={'4'} colorScheme={'red'} type="submit">
+            <Button my={'3'} colorScheme={'red'} type="submit">
               Sign Up
             </Button>
 

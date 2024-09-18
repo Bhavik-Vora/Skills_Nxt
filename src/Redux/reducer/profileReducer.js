@@ -1,14 +1,8 @@
-import { createReducer } from '@reduxjs/toolkit';
+import { createReducer } from "@reduxjs/toolkit";
 
-const initialState = {
-  loading: false,
-  message: null,
-  error: null,
-};
-
-const profileReducer = createReducer(initialState, builder => {
+export const profileReducer = createReducer({}, (builder) => {
   builder
-    .addCase('updateProfileRequest', state => {
+    .addCase('updateProfileRequest', (state) => {
       state.loading = true;
     })
     .addCase('updateProfileSuccess', (state, action) => {
@@ -19,8 +13,7 @@ const profileReducer = createReducer(initialState, builder => {
       state.loading = false;
       state.error = action.payload;
     })
-
-    .addCase('updateProfilePictureRequest', state => {
+    .addCase('updateProfilePictureRequest', (state) => {
       state.loading = true;
     })
     .addCase('updateProfilePictureSuccess', (state, action) => {
@@ -31,8 +24,7 @@ const profileReducer = createReducer(initialState, builder => {
       state.loading = false;
       state.error = action.payload;
     })
-
-    .addCase('changePasswordRequest', state => {
+    .addCase('changePasswordRequest', (state) => {
       state.loading = true;
     })
     .addCase('changePasswordSuccess', (state, action) => {
@@ -43,8 +35,7 @@ const profileReducer = createReducer(initialState, builder => {
       state.loading = false;
       state.error = action.payload;
     })
-
-    .addCase('forgetPasswordRequest', state => {
+    .addCase('forgetPasswordRequest', (state) => {
       state.loading = true;
     })
     .addCase('forgetPasswordSuccess', (state, action) => {
@@ -55,8 +46,7 @@ const profileReducer = createReducer(initialState, builder => {
       state.loading = false;
       state.error = action.payload;
     })
-
-    .addCase('resetPasswordRequest', state => {
+    .addCase('resetPasswordRequest', (state) => {
       state.loading = true;
     })
     .addCase('resetPasswordSuccess', (state, action) => {
@@ -67,8 +57,7 @@ const profileReducer = createReducer(initialState, builder => {
       state.loading = false;
       state.error = action.payload;
     })
-
-    .addCase('removeFromPlaylistRequest', state => {
+    .addCase('removeFromPlaylistRequest', (state) => {
       state.loading = true;
     })
     .addCase('removeFromPlaylistSuccess', (state, action) => {
@@ -79,13 +68,10 @@ const profileReducer = createReducer(initialState, builder => {
       state.loading = false;
       state.error = action.payload;
     })
-
-    .addCase('clearError', state => {
+    .addCase('clearError', (state) => {
       state.error = null;
     })
-    .addCase('clearMessage', state => {
+    .addCase('clearMessage', (state) => {
       state.message = null;
     });
 });
-
-export default profileReducer;

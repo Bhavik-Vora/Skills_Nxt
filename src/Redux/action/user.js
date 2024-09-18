@@ -21,7 +21,6 @@ export const register = formdata => async dispatch => {
       headers: {
         'Content-type': 'multipart/form-data',
       },
-
       withCredentials: true,
     });
 
@@ -35,8 +34,9 @@ export const loadUser = () => async (dispatch) => {
   try {
     dispatch({ type: 'loadUserRequest' });
 
-    const { data } = await axios.get(`${server}/me`); // Example endpoint to get user info
-
+    const { data } = await axios.get(`${server}/me`,{
+      withCredentials: true,
+    }); 
     dispatch({
       type: 'loadUserSuccess',
       payload: data.user,
@@ -68,7 +68,9 @@ export const buySubscription = () => async (dispatch) => {
   try {
     dispatch({ type: 'buySubscriptionRequest' });
 
-    const { data } = await axios.post(`${otherserver}/subscribe`);
+    const { data } = await axios.post(`${otherserver}/subscribe`,{},{
+      withCredentials: true,
+    }); 
 
     dispatch({
       type: 'buySubscriptionSuccess',
@@ -87,7 +89,9 @@ export const removeSubscription = () => async (dispatch) => {
   try {
     dispatch({ type: 'cancelSubscriptionRequest' });
 
-    const { data } = await axios.delete(`${otherserver}/subscribe`);
+    const { data } = await axios.post(`${otherserver}/unsubscribe`,{},{
+      withCredentials: true,
+    });
 
     dispatch({
       type: 'cancelSubscriptionSuccess',

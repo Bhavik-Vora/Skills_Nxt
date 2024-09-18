@@ -11,12 +11,12 @@ import {
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import thumbnail from "../../Assets/images/Video_thumbnail.jpeg"
+import thumbnail from "../../Assets/images/Video_thumbnail.jpeg";
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCourses } from '../../Redux/action/course';
 import { loadUser } from '../../Redux/action/user';
 import { addToPlaylist } from '../../Redux/action/profile';
-import {toast} from "react-hot-toast";
+import { toast } from 'react-hot-toast';
 
 const Course = ({
   title,
@@ -26,7 +26,8 @@ const Course = ({
   addToPlaylistHandler,
   creator,
   description,
-  lectureCount,loading
+  lectureCount,
+  loading
 }) => {
   return (
     <VStack className="course" alignItems={['center', 'flex-start']}>
@@ -35,11 +36,18 @@ const Course = ({
         textAlign={['center', 'left']}
         maxW="200px"
         fontFamily={'sans-serif'}
-        noOfLines={3}
+        noOfLines={2}
         children={title}
         size={'sm'}
-      />
-      <Text children={description} noOfLines={2} />
+      >
+        {title || 'No Title'} {/* Default text if title is not provided */}
+      </Heading>
+      <Text
+        w="full"
+        noOfLines={2} // Limit the description to 2 lines, wrapping it if too long
+      >
+        {description || 'No description available'}
+      </Text>
       <HStack>
         <Text
           children={'creator'}
@@ -80,45 +88,45 @@ const Course = ({
     </VStack>
   );
 };
+
 const Courses = () => {
   const [keyword, setKeyword] = useState('');
   const [category, setCategory] = useState('');
 
   const dispatch = useDispatch();
 
-  const addToPlaylistHandler = async couseId => {
-    // toast.loading('Adding to Playlist...');
-    await dispatch(addToPlaylist(couseId));
-    dispatch(loadUser());
+  const addToPlaylistHandler = async courseId => {
+    const toastId = toast.loading('Adding to Playlist...', { duration: 10000 });
+    try {
+      await dispatch(addToPlaylist(courseId));
+      dispatch(loadUser());
+      toast.success('Added to Playlist!', { id: toastId, duration: 5000 });
+    } catch (error) {
+      toast.error('Failed to add to Playlist', { id: toastId, duration: 5000 });
+    }
   };
 
   const categories = [
     'Web development',
-    'Artificial Intellegence',
     'Data Structure & Algorithm',
-    'App Development',
-    'Data Science',
-    'Game Development',
+    'Youtube Free Playlist',
   ];
 
-  const { loading, courses, error, message } = useSelector(
-    state => state.course
-  );
+  const { loading, courses, error, message } = useSelector(state => state.course);
 
- // Fetch courses when component mounts or when category/keyword changes
- useEffect(() => {
-  dispatch(getAllCourses(category, keyword));
+  useEffect(() => {
+    dispatch(getAllCourses(category, keyword));
 
-  if (error) {
-    toast.error(error);
-    dispatch({ type: 'clearError' });
-  }
+    if (error) {
+      toast.error(error, { duration: 5000 });
+      dispatch({ type: 'clearError' });
+    }
 
-  if (message) {
-    toast.success(message);
-    dispatch({ type: 'clearMessage' });
-  }
-}, [category, keyword, dispatch, error, message]);
+    if (message) {
+      toast.success(message, { duration: 5000 });
+      dispatch({ type: 'clearMessage' });
+    }
+  }, [category, keyword, dispatch, error, message]);
 
   return (
     <Container minH={'95vh'} maxW="container.lg" paddingY={'8'}>
@@ -149,9 +157,9 @@ const Courses = () => {
         })}
       </HStack>
       <Stack
-        direction={['colummn', 'row']}
+        direction={['column', 'row']}
         flexWrap="wrap"
-        justifyContent={['flex-start', 'space-evenly']}
+        justifyContent={['center', 'space-evenly']}
         alignItems={['center', 'flex-start']}
       >
         {courses.length > 0 ? (

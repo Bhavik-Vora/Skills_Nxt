@@ -151,9 +151,9 @@ function Row({ item, courseDetailsHandler, deleteButtonHandler, loading  }) {
       </Td>
       <Td>{item.createdBy}</Td>
       <Td textTransform={'uppercase'}>{item.category}</Td>
-      <Td>{item.createdBy}</Td>
       <Td isNumeric>{item.views}</Td>
       <Td isNumeric>{item.numOfVideos}</Td>
+      
 
       <Td isNumeric>
         <HStack justifyContent={'flex-end'}>

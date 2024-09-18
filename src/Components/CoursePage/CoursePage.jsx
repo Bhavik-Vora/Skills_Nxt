@@ -18,8 +18,9 @@ const CoursePage = ({ user }) => {
   if (
     user.role !== 'admin' &&
     (user.subscription === undefined || user.subscription.status !== 'active')
-  ) return <Navigate to={'/subscribe'} />;
-  
+  )
+    return <Navigate to={'/subscribe'} />;
+
   return loading ? (
     <Loader />
   ) : (
@@ -29,21 +30,28 @@ const CoursePage = ({ user }) => {
           <Box>
             <video
               controls
+              autoPlay
+              muted
               controlsList="nodownload noremoteplayback"
               disablePictureInPicture
               disableRemotePlayback
-              poster={thumbnail}
+              width={"100%"}
+              poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAtUExURUdwTP///////////////////////////////////3jMdq8AAAE7SURBVHja7cEBDQAgEMCw6e3/T4boQgAAAAAAAAAAAAAAAAAAED8W0tAAAAAAAAAAAAAAAAAAAAAADgb0AAwHzkRJF/JgUwlZJqBsqVkaYVUlqBa6lom2RqlZTqRWbaom6RanVWZWjSKplXXWKRWt1iVEu2ZdfIlRLqmXXUkRNqrldWkRJp7JzXYC5AwEAAAAAAAAAAAAAAABAPxpAQAAAAAAAAAAAAAAAAAAAACAc2ACAADmhnGDoBo6egAAAABJRU5ErkJggg=="
               src={lectures[lectureNumber].video.url}
             />
 
             <Heading
               m={'4'}
+              fontSize={"2rem"}
               children={`#${lectureNumber + 1} ${
                 lectures[lectureNumber].title
-              }`}
+              }`
+          }
             />
-            <Heading children={'description'} m={'4'} />
+            <Heading m={'4'} >
+              
             <Text m={'4'} children={lectures[lectureNumber].description} />
+            </Heading>
           </Box>
           <VStack>
             {lectures.map((element, index) => (
@@ -66,7 +74,12 @@ const CoursePage = ({ user }) => {
           </VStack>
         </>
       ) : (
-        <Heading children="No Lectures Found"></Heading>
+        <VStack >
+          <Heading
+            children="No Lectures Found"
+            textAlign={"center"}
+          ></Heading>
+        </VStack>
       )}
     </Grid>
   );

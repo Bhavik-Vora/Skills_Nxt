@@ -17,15 +17,18 @@ import {
 } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import { ColorModeSwitcher } from '../../../ColorModeSwitcher';
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import { logout } from '../../../Redux/action/user';
 
-const Header = ({ isAuthenticated = false, user }) => {
+const Header = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
   const LinkButton = ({ url = '/', title = 'Home', onClick = { onClose } }) => (
     <Link onClick={onClose} to={url}>
       <Button variant={'ghost'}>{title}</Button>
     </Link>
+  );
+  const { isAuthenticated, user, message, error, loading } = useSelector(
+    state => state.user
   );
   const dispatch = useDispatch();
 
@@ -60,9 +63,10 @@ const Header = ({ isAuthenticated = false, user }) => {
           <DrawerBody>
             <VStack spacing={'4'} alignItems={'flex-start'}>
               <LinkButton onClick={onClose} url="/" title="Home" />
-              <LinkButton onClick={onClose} url="/Login" title="Login" />
-              <LinkButton onClick={onClose} url="/register" title="Sign Up" />
               <LinkButton onClick={onClose} url="/courses" title="Courses" />
+              <LinkButton onClick={onClose} url="/subscribe" title="Subscribe" />
+              <LinkButton onClick={onClose} url="/aboutus" title="About Us" />
+              
             </VStack>
             <HStack
               justifyContent={'space-evenly'}
